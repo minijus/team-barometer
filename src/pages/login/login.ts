@@ -24,11 +24,11 @@ export class LoginPage {
 
     if (form.valid) {
       this.userData.login(this.login.username);
-      this.navCtrl.push(PollsPage);
+      this.navCtrl.setRoot(PollsPage);
     }
   }
 
   onSignup() {
-    this.navCtrl.push(SignupPage);
+    this.navCtrl.setRoot(SignupPage);
   }
 }

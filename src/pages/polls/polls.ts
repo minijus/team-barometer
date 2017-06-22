@@ -45,6 +45,10 @@ export class PollsPage {
   }
 
   updatePolls(email: any, polls: any) {
+    if(!polls || (polls && typeof polls.map !== "function")) {
+      return;
+    }
+
     this.polls = polls.map((poll: any) => {
 
       let userVote = poll.users.find((user: any) => {
