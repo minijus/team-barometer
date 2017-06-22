@@ -33,12 +33,6 @@
                 </ion-row>
               </ion-grid>
 
-              <!--<ion-item [hidden]="poll.userVoted || (!poll.userVoted && !(poll.userVote >= 0))">-->
-                <!--<ion-label stacked color="primary">Comment</ion-label>-->
-                <!--<ion-input [(ngModel)]="poll.comment" name="comment" type="text" #comment="ngModel" spellcheck="false" autocapitalize="off">-->
-                <!--</ion-input>-->
-              <!--</ion-item>-->
-
               <ion-list [hidden]="poll.userVoted || (!poll.userVoted && !(poll.userVote >= 0))">
 
                 <ion-item>

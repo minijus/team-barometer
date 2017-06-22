@@ -24,7 +24,7 @@ export class TutorialPage {
   ) { }
 
   startApp() {
-    this.navCtrl.push(LoginPage).then(() => {
+    this.navCtrl.setRoot(LoginPage).then(() => {
       this.storage.set('hasSeenTutorial', 'true');
     })
   }
