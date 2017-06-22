@@ -84,7 +84,7 @@ export class PollsPage {
           "email": email,
           "id": poll._id,
           "vote": poll.userVote,
-          "comment": ""
+          "comment": poll.comment
         };
         console.log(voteReq);
 
