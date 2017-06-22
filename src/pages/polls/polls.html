@@ -22,15 +22,6 @@
             </ion-card-header>
 
             <ion-card-content class="outer-content vote" [ngClass]="(poll.userVote >= 0) ? 'vote--set' : 'vote--not-set'">
-              <!--<ion-list>-->
-                <!--&lt;!&ndash;<ion-item *ngFor="let vote of votes" (click)="setVote(vote, poll)">&ndash;&gt;-->
-
-                  <!--&lt;!&ndash;<h2>{{vote.name}}</h2>&ndash;&gt;-->
-                <!--&lt;!&ndash;</ion-item>&ndash;&gt;-->
-
-
-                <!---->
-              <!--</ion-list>-->
               <ion-grid>
                 <ion-row>
                   <ion-col col-3 *ngFor="let vote of votes" (click)="setVote(vote, poll)">
@@ -45,26 +36,14 @@
               <button ion-button color="secondary" full round (click)="vote(poll)" [disabled]="!(poll.userVote >= 0)">Vote</button>
             </ion-card-content>
 
-            <!--<ion-row no-padding>-->
-              <!--<ion-col col-12 col-lg-auto text-center text-lg-left>-->
-                <!--<button ion-button clear small color="primary" icon-left (click)="goToSpeakerTwitter(speaker)">-->
-                  <!--<ion-icon name="logo-twitter"></ion-icon>-->
-                  <!--Tweet-->
-                <!--</button>-->
-              <!--</ion-col>-->
-              <!--<ion-col col-12 col-lg-auto text-center>-->
-                <!--<button ion-button clear small color="primary" icon-left (click)="openSpeakerShare(speaker)">-->
-                  <!--<ion-icon name='share-alt'></ion-icon>-->
-                  <!--Share-->
-                <!--</button>-->
-              <!--</ion-col>-->
-              <!--<ion-col col-12 col-lg-auto text-center text-lg-right>-->
-                <!--<button ion-button clear small color="primary" icon-left (click)="openContact(speaker)">-->
-                  <!--<ion-icon name='chatboxes'></ion-icon>-->
-                  <!--Contact-->
-                <!--</button>-->
-              <!--</ion-col>-->
-            <!--</ion-row>-->
+            <ion-row>
+              <ion-col>
+                <button ion-button icon-left clear small>
+                  <ion-icon name="contact"></ion-icon>
+                  <div>{{poll.users.length}} Votes</div>
+                </button>
+              </ion-col>
+            </ion-row>
 
           </ion-card>
 
