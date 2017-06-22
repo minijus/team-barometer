@@ -99,4 +99,13 @@ export class PollsPage {
 
     });
   }
+
+  _getCommentsCount(poll: any){
+    return poll.users.reduce((a: any, b: any) => {
+      if (!b.comment){
+        return 0;
+      }
+      return a + 1;
+    }, 0);
+
 }
