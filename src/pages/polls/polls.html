@@ -69,6 +69,24 @@
 
             <ion-row>
               <ion-col>
+                <div class="progress-bar green stripes">
+                  <span [style.width]="poll.averagePercentage + '%'"></span>
+                </div>
+                <div style="width: 100%; position: relative">
+                  <span style="position: absolute; width: 7%" [style.left]="getUserPlace(poll.userVote) + '%'">
+                    <ion-thumbnail item-start class="vote-icon">
+                      <img [src]='"assets/img/votes/" + poll.theme + "/" + votes[poll.userVote].name + ".png"' alt="{{votes[poll.userVote].name}}">
+                    </ion-thumbnail>
+                    <div style="position: absolute">
+                      <span>My vote</span>
+                    </div>
+                  </span>
+                </div>
+              </ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col>
                 <button ion-button icon-left clear small>
                   <ion-icon name="contact"></ion-icon>
                   <div>{{poll.users.length}} Votes</div>

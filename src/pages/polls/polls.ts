@@ -57,6 +57,16 @@ export class PollsPage {
         poll.userVote = +userVote.vote;
       }
 
+      let results: any = this.getVoteResults(poll);
+
+      let total = results.reduce((a: any, b: any) => {
+        return a + (b.value * b.key);
+      }, 0);
+
+      poll.totalVoteCount = total;
+
+      poll.averagePercentage = (poll.totalVoteCount / (poll.users.length * 3)) * 100;
+
       return poll;
     });
   }
@@ -125,6 +135,33 @@ export class PollsPage {
     });
 
     return max;
+  }
+
+  getUserPlace(userVote: any){
+    let percentage = 100 / (userVote + 1);
+
+    if (percentage === 100){
+      return 5;
+    }
+
+    if (percentage >= 50){
+      return 23;
+    }
+
+    if (percentage >= 33){
+      return 78;
+    }
+
+    if (percentage >= 25){
+      return 92;
+    }
+
+
+
+
+
+
+    return percentage;
   }
 
   getCommentsCount(poll: any) {
