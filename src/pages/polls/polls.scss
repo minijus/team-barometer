@@ -29,11 +29,16 @@ page-speaker-list {
     padding-right: 0;
   }
 }
-.vote {
-  &.-set {
-    .vote-icon {
-      &.--selected {
 
+.vote {
+  &--set {
+    .vote-icon {
+      -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+      filter: grayscale(100%);
+      opacity: .7;
+      &--selected {
+        filter: none;
+        opacity: 1;
       }
     }
   }

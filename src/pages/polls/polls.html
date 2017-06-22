@@ -34,8 +34,8 @@
               <ion-grid>
                 <ion-row>
                   <ion-col col-3 *ngFor="let vote of votes" (click)="setVote(vote, poll)">
-                    <ion-thumbnail item-start
-                                   [ngClass]="poll.userVote === vote.value ? 'vote-icon__selected' : ''">
+                    <ion-thumbnail item-start class="vote-icon"
+                                   [ngClass]="poll.userVote === vote.value ? 'vote-icon--selected' : ''">
                       <img [src]='"assets/img/votes/" + poll.theme + "/" + vote.name + ".png"' alt="{{vote.name}}">
                     </ion-thumbnail>
                   </ion-col>
