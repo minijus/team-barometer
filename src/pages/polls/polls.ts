@@ -99,7 +99,35 @@ export class PollsPage {
     });
   }
 
-  _getCommentsCount(poll: any) {
+  getVoteResults(poll: any) {
+    let results: any = {0: 0, 1: 0, 2: 0, 3: 0};
+    poll.users
+      .forEach((result: any) => {
+        results[result.vote]++;
+      });
+
+    return Object.keys(results).map((item) => {
+      return {
+        key: item,
+        value: results[item]
+      }
+    });
+  }
+
+  getVoteResultsMaxValue(poll: any) {
+    let results = this.getVoteResults(poll);
+    let max: number = 0;
+
+    results.forEach((item) => {
+      if (item.value > max){
+        max = item.value;
+      }
+    });
+
+    return max;
+  }
+
+  getCommentsCount(poll: any) {
     return poll.users.reduce((a: any, b: any) => {
       if (!b.comment) {
         return 0;
