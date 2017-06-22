@@ -11,7 +11,6 @@ import { LoginPage }  from "../login/login";
   templateUrl: 'polls.html'
 })
 export class PollsPage {
-  // actionSheet: ActionSheet;
   polls: any[] = [];
   votes: any[] = [{
     value: 0,
@@ -39,23 +38,27 @@ export class PollsPage {
     this.user.getUsername().then((email) => {
 
       this.pollsData.getPolls().subscribe((polls: any[]) => {
-        this.polls = polls.map((poll) => {
-
-          let userVote = poll.users.find((user:any) => {
-            return user.email === email;
-          });
-
-          poll.userVoted = !!userVote;
-
-          if(poll.userVoted) {
-            poll.userVote = +userVote.vote;
-          }
-
-          return poll;
-        });
+        this.updatePolls(email, polls);
       });
 
 
+    });
+  }
+
+  updatePolls(email:any, polls:any) {
+    this.polls = polls.map((poll:any) => {
+
+      let userVote = poll.users.find((user:any) => {
+        return user.email === email;
+      });
+
+      poll.userVoted = !!userVote;
+
+      if(poll.userVoted) {
+        poll.userVote = +userVote.vote;
+      }
+
+      return poll;
     });
   }
 
@@ -68,8 +71,11 @@ export class PollsPage {
   }
 
   setVote(vote: any, poll: any){
-    console.log(vote, poll);
-    poll.userVote = vote.value;
+    // console.log(vote, poll);
+    if(!poll.userVoted){
+      poll.userVote = vote.value;
+    }
+
   }
 
   vote(poll: any) {
@@ -85,7 +91,7 @@ export class PollsPage {
 
         this.pollsData.setVote(voteReq)
           .subscribe((data) => {
-            console.log(data);
+            this.updatePolls(email, data.pools);
           });
       } else {
         this.nav.push(LoginPage);
