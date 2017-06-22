@@ -21,7 +21,7 @@
               </button>
             </ion-card-header>
 
-            <ion-card-content class="outer-content">
+            <ion-card-content class="outer-content vote" [ngClass]="(poll.userVote >= 0) ? 'vote--set' : 'vote--not-set'">
               <!--<ion-list>-->
                 <!--&lt;!&ndash;<ion-item *ngFor="let vote of votes" (click)="setVote(vote, poll)">&ndash;&gt;-->
 

@@ -29,3 +29,12 @@ page-speaker-list {
     padding-right: 0;
   }
 }
+.vote {
+  &.-set {
+    .vote-icon {
+      &.--selected {
+
+      }
+    }
+  }
+}
