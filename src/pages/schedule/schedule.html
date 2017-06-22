@@ -6,10 +6,10 @@
 
     <ion-segment [(ngModel)]="segment" (ionChange)="updateSchedule()">
       <ion-segment-button value="all">
-        All
+        Active
       </ion-segment-button>
       <ion-segment-button value="favorites">
-        Favorites
+        Closed
       </ion-segment-button>
     </ion-segment>
 
@@ -20,13 +20,13 @@
     </ion-buttons>
   </ion-navbar>
 
-  <ion-toolbar no-border-top>
-    <ion-searchbar color="primary"
-                   [(ngModel)]="queryText"
-                   (ionInput)="updateSchedule()"
-                   placeholder="Search">
-    </ion-searchbar>
-  </ion-toolbar>
+  <!--<ion-toolbar no-border-top>-->
+    <!--<ion-searchbar color="primary"-->
+                   <!--[(ngModel)]="queryText"-->
+                   <!--(ionInput)="updateSchedule()"-->
+                   <!--placeholder="Search">-->
+    <!--</ion-searchbar>-->
+  <!--</ion-toolbar>-->
 </ion-header>
 
 <ion-content>
@@ -74,15 +74,15 @@
       No Sessions Found
   </ion-list-header>
 
-  <ion-fab bottom right #fab>
-    <button ion-fab><ion-icon name="share"></ion-icon></button>
-    <ion-fab-list side="top">
-      <button ion-fab color="vimeo" (click)="openSocial('Vimeo', fab)"><ion-icon name="logo-vimeo"></ion-icon></button>
-      <button ion-fab color="google" (click)="openSocial('Google+', fab)"><ion-icon name="logo-googleplus"></ion-icon></button>
-      <button ion-fab color="twitter" (click)="openSocial('Twitter', fab)"><ion-icon name="logo-twitter"></ion-icon></button>
-      <button ion-fab color="facebook" (click)="openSocial('Facebook', fab)"><ion-icon name="logo-facebook"></ion-icon></button>
-    </ion-fab-list>
-  </ion-fab>
+  <!--<ion-fab bottom right #fab>-->
+    <!--<button ion-fab><ion-icon name="share"></ion-icon></button>-->
+    <!--<ion-fab-list side="top">-->
+      <!--<button ion-fab color="vimeo" (click)="openSocial('Vimeo', fab)"><ion-icon name="logo-vimeo"></ion-icon></button>-->
+      <!--<button ion-fab color="google" (click)="openSocial('Google+', fab)"><ion-icon name="logo-googleplus"></ion-icon></button>-->
+      <!--<button ion-fab color="twitter" (click)="openSocial('Twitter', fab)"><ion-icon name="logo-twitter"></ion-icon></button>-->
+      <!--<button ion-fab color="facebook" (click)="openSocial('Facebook', fab)"><ion-icon name="logo-facebook"></ion-icon></button>-->
+    <!--</ion-fab-list>-->
+  <!--</ion-fab>-->
 
 
 </ion-content>

@@ -152,4 +152,10 @@ export class ConferenceData {
     });
   }
 
+  getPolls() {
+    return this.load().map((data: any) => {
+      return data.polls;
+    })
+  }
+
 }

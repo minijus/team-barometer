@@ -1,0 +1,75 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Polls</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="outer-content speaker-list">
+  <ion-list [virtualScroll]="polls">
+    <ion-grid fixed>
+      <ion-row align-items-stretch>
+
+        <ion-col col-12 col-md-6 align-self-stretch align-self-center *virtualItem="let poll" approxItemHeight="457px">
+
+          <ion-card class="speaker-card">
+            <ion-card-header>
+              <button ion-item detail-none (click)="goToPollDetail(poll)">
+                {{poll.title}}
+              </button>
+            </ion-card-header>
+
+            <ion-card-content class="outer-content">
+              <!--<ion-list>-->
+                <!--&lt;!&ndash;<ion-item *ngFor="let vote of votes" (click)="setVote(vote, poll)">&ndash;&gt;-->
+
+                  <!--&lt;!&ndash;<h2>{{vote.name}}</h2>&ndash;&gt;-->
+                <!--&lt;!&ndash;</ion-item>&ndash;&gt;-->
+
+
+                <!---->
+              <!--</ion-list>-->
+              <ion-grid>
+                <ion-row>
+                  <ion-col col-3 *ngFor="let vote of votes" (click)="setVote(vote, poll)">
+                    <ion-thumbnail item-start
+                                   [ngClass]="poll.userVote === vote.value ? 'vote-icon__selected' : ''">
+                      <img [src]='"assets/img/votes/" + poll.theme + "/" + vote.name + ".png"' alt="{{vote.name}}">
+                    </ion-thumbnail>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+
+              <button ion-button color="secondary" full round (click)="vote(poll)" [disabled]="!(poll.userVote >= 0)">Vote</button>
+            </ion-card-content>
+
+            <!--<ion-row no-padding>-->
+              <!--<ion-col col-12 col-lg-auto text-center text-lg-left>-->
+                <!--<button ion-button clear small color="primary" icon-left (click)="goToSpeakerTwitter(speaker)">-->
+                  <!--<ion-icon name="logo-twitter"></ion-icon>-->
+                  <!--Tweet-->
+                <!--</button>-->
+              <!--</ion-col>-->
+              <!--<ion-col col-12 col-lg-auto text-center>-->
+                <!--<button ion-button clear small color="primary" icon-left (click)="openSpeakerShare(speaker)">-->
+                  <!--<ion-icon name='share-alt'></ion-icon>-->
+                  <!--Share-->
+                <!--</button>-->
+              <!--</ion-col>-->
+              <!--<ion-col col-12 col-lg-auto text-center text-lg-right>-->
+                <!--<button ion-button clear small color="primary" icon-left (click)="openContact(speaker)">-->
+                  <!--<ion-icon name='chatboxes'></ion-icon>-->
+                  <!--Contact-->
+                <!--</button>-->
+              <!--</ion-col>-->
+            <!--</ion-row>-->
+
+          </ion-card>
+
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-list>
+</ion-content>

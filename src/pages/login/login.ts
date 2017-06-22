@@ -5,7 +5,7 @@ import { NavController } from 'ionic-angular';
 
 import { UserData } from '../../providers/user-data';
 
-import { TabsPage } from '../tabs/tabs';
+import { PollsPage } from '../polls/polls';
 import { SignupPage } from '../signup/signup';
 
 
@@ -24,7 +24,7 @@ export class LoginPage {
 
     if (form.valid) {
       this.userData.login(this.login.username);
-      this.navCtrl.push(TabsPage);
+      this.navCtrl.push(PollsPage);
     }
   }
 

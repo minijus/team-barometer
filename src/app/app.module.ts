@@ -11,6 +11,7 @@ import { IonicStorageModule } from '@ionic/storage';
 
 import { ConferenceApp } from './app.component';
 
+import { PollsPage } from '../pages/polls/polls';
 import { AboutPage } from '../pages/about/about';
 import { PopoverPage } from '../pages/about-popover/about-popover';
 import { AccountPage } from '../pages/account/account';
@@ -27,12 +28,14 @@ import { TutorialPage } from '../pages/tutorial/tutorial';
 import { SupportPage } from '../pages/support/support';
 
 import { ConferenceData } from '../providers/conference-data';
+import { PollsData } from '../providers/polls';
 import { UserData } from '../providers/user-data';
 
 
 @NgModule({
   declarations: [
     ConferenceApp,
+    PollsPage,
     AboutPage,
     AccountPage,
     LoginPage,
@@ -60,6 +63,7 @@ import { UserData } from '../providers/user-data';
         { component: SpeakerListPage, name: 'SpeakerList', segment: 'speakerList' },
         { component: SpeakerDetailPage, name: 'SpeakerDetail', segment: 'speakerDetail/:name' },
         { component: MapPage, name: 'Map', segment: 'map' },
+        { component: PollsPage, name: 'PollsPage', segment: 'polls' },
         { component: AboutPage, name: 'About', segment: 'about' },
         { component: TutorialPage, name: 'Tutorial', segment: 'tutorial' },
         { component: SupportPage, name: 'SupportPage', segment: 'support' },
@@ -73,6 +77,7 @@ import { UserData } from '../providers/user-data';
   bootstrap: [IonicApp],
   entryComponents: [
     ConferenceApp,
+    PollsPage,
     AboutPage,
     AccountPage,
     LoginPage,
@@ -91,6 +96,7 @@ import { UserData } from '../providers/user-data';
   providers: [
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     ConferenceData,
+    PollsData,
     UserData,
     InAppBrowser,
     SplashScreen
