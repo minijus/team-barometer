@@ -43,6 +43,12 @@
                   <div>{{poll.users.length}} Votes</div>
                 </button>
               </ion-col>
+              <ion-col *ngIf="poll.users">
+                <button ion-button icon-left clear small>
+                  <ion-icon name="text"></ion-icon>
+                  <div>{{_getCommentsCount(poll)}} Messages</div>
+                </button>
+              </ion-col>
             </ion-row>
 
           </ion-card>
