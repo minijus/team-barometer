@@ -26,10 +26,9 @@ export class PollsPage {
     name: "wow"
   }];
 
-  constructor(
-    public nav: NavController,
-    public pollsData: PollsData,
-    public user: UserData) {
+  constructor(public nav: NavController,
+              public pollsData: PollsData,
+              public user: UserData) {
 
   }
 
@@ -45,16 +44,16 @@ export class PollsPage {
     });
   }
 
-  updatePolls(email:any, polls:any) {
-    this.polls = polls.map((poll:any) => {
+  updatePolls(email: any, polls: any) {
+    this.polls = polls.map((poll: any) => {
 
-      let userVote = poll.users.find((user:any) => {
+      let userVote = poll.users.find((user: any) => {
         return user.email === email;
       });
 
       poll.userVoted = !!userVote;
 
-      if(poll.userVoted) {
+      if (poll.userVoted) {
         poll.userVote = +userVote.vote;
       }
 
@@ -70,9 +69,9 @@ export class PollsPage {
     // });
   }
 
-  setVote(vote: any, poll: any){
+  setVote(vote: any, poll: any) {
     // console.log(vote, poll);
-    if(!poll.userVoted){
+    if (!poll.userVoted) {
       poll.userVote = vote.value;
     }
 
@@ -100,12 +99,14 @@ export class PollsPage {
     });
   }
 
-  _getCommentsCount(poll: any){
+  _getCommentsCount(poll: any) {
     return poll.users.reduce((a: any, b: any) => {
-      if (!b.comment){
+      if (!b.comment) {
         return 0;
       }
       return a + 1;
     }, 0);
+
+  }
 
 }
