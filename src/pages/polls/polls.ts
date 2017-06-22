@@ -160,11 +160,6 @@ export class PollsPage {
       return 92;
     }
 
-
-
-
-
-
     return percentage;
   }
 
