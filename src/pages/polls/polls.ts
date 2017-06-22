@@ -40,10 +40,17 @@ export class PollsPage {
 
       this.pollsData.getPolls().subscribe((polls: any[]) => {
         this.polls = polls.map((poll) => {
-          poll.userVoted = poll.users.some((user: any) => {
+
+          let userVote = poll.users.find((user:any) => {
             return user.email === email;
           });
-          // console.log(poll.users);
+
+          poll.userVoted = !!userVote;
+
+          if(poll.userVoted) {
+            poll.userVote = +userVote.vote;
+          }
+
           return poll;
         });
       });
