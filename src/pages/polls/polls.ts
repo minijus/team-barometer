@@ -1,10 +1,10 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 
-import { NavController } from 'ionic-angular';
+import {NavController} from 'ionic-angular';
 // import { InAppBrowser } from '@ionic-native/in-app-browser';
 
-import { UserData } from '../../providers/user-data';
-import { PollsData } from '../../providers/polls';
+import {UserData} from '../../providers/user-data';
+import {PollsData} from '../../providers/polls';
 
 // import { SessionDetailPage } from '../session-detail/session-detail';
 // import { SpeakerDetailPage } from '../speaker-detail/speaker-detail';
@@ -39,10 +39,9 @@ export class PollsPage {
   // ) { }
 
 
-  constructor(
-    public nav: NavController,
-    public pollsData: PollsData,
-    public user: UserData,) {
+  constructor(public nav: NavController,
+              public pollsData: PollsData,
+              public user: UserData,) {
 
   }
 
@@ -54,13 +53,14 @@ export class PollsPage {
 
   goToPollDetail(poll: any) {
     console.log(poll);
+    console.log(this.getVoteResults(poll));
     // this.navCtrl.push(PollDetailPage, {
     //   name: poll.title,
     //   poll: poll
     // });
   }
 
-  setVote(vote: any, poll: any){
+  setVote(vote: any, poll: any) {
     console.log(vote, poll);
     poll.userVote = vote.value;
   }
@@ -82,14 +82,28 @@ export class PollsPage {
     });
   }
 
-  _getCommentsCount(poll: any){
+  getVoteResults(poll: any) {
+    let results: any = {0: 0, 1: 0, 2: 0, 3: 0};
+    poll.users
+      .forEach((result: any) => {
+        results[result.vote]++;
+      });
+
+    return Object.keys(results).map((item) => {
+      return {
+        key: item,
+        value: results[item]
+      }
+    });
+  }
+
+  getCommentsCount(poll: any) {
     return poll.users.reduce((a: any, b: any) => {
-      if (!b.comment){
+      if (!b.comment) {
         return 0;
       }
       return a + 1;
     }, 0);
-
   }
 
   // goToSpeakerDetail(speakerName: any) {
