@@ -33,7 +33,29 @@
                 </ion-row>
               </ion-grid>
 
-              <button ion-button color="secondary" full round (click)="vote(poll)" [disabled]="!(poll.userVote >= 0)">Vote</button>
+              <!--<ion-item [hidden]="poll.userVoted || (!poll.userVoted && !(poll.userVote >= 0))">-->
+                <!--<ion-label stacked color="primary">Comment</ion-label>-->
+                <!--<ion-input [(ngModel)]="poll.comment" name="comment" type="text" #comment="ngModel" spellcheck="false" autocapitalize="off">-->
+                <!--</ion-input>-->
+              <!--</ion-item>-->
+
+              <ion-list [hidden]="poll.userVoted || (!poll.userVoted && !(poll.userVote >= 0))">
+
+                <ion-item>
+                  <ion-label floating color="primary">Comment</ion-label>
+                  <ion-input [(ngModel)]="poll.comment" type="text"></ion-input>
+                </ion-item>
+
+              </ion-list>
+
+
+              <button ion-button color="secondary" full round
+                      (click)="vote(poll)"
+                      [disabled]="!(poll.userVote >= 0)"
+                      [hidden]="poll.userVoted"
+              >
+                Vote
+              </button>
             </ion-card-content>
 
             <ion-row *ngFor="let result of getVoteResults(poll)">

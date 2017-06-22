@@ -73,5 +73,12 @@
             "cordova-plugin-wkwebview-engine": {},
             "ionic-plugin-keyboard": {}
         }
-    }
+    },
+  "gh-pages-deploy": {
+    "staticpath": "www",
+    "prep": [
+      "build"
+    ],
+    "noprompt": false
+  }
 }
