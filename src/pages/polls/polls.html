@@ -58,8 +58,14 @@
               </button>
             </ion-card-content>
 
-            <ion-row *ngFor="let result of getVoteResults(poll)">
-              {{result.key}} {{result.value}}
+            <ion-row [hidden]="!poll.userVoted" *ngFor="let result of getVoteResults(poll)">
+              <ion-col>{{result.key}}</ion-col>
+              <ion-col col-11>
+                <div class="progress-bar blue stripes">
+                  <span [style.width]="result.value / getVoteResultsMaxValue(poll) * 100 + '%'"></span>
+                </div>
+              </ion-col>
+              <ion-col>{{result.value}}</ion-col>
             </ion-row>
 
             <ion-row>
