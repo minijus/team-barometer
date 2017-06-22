@@ -59,13 +59,18 @@
             </ion-card-content>
 
             <ion-row [hidden]="!poll.userVoted" *ngFor="let result of getVoteResults(poll)">
-              <ion-col>{{result.key}}</ion-col>
-              <ion-col col-11>
+              <ion-col>
+                <ion-thumbnail item-start class="vote-icon"
+                               [ngClass]="poll.userVote === votes[result.key].val? 'vote-icon--selected' : ''">
+                  <img [src]='"assets/img/votes/" + poll.theme + "/" + votes[result.key].name + ".png"' alt="{{votes[result.key].name}}">
+                </ion-thumbnail>
+              </ion-col>
+              <ion-col col-10>
                 <div class="progress-bar blue stripes">
                   <span [style.width]="result.value / getVoteResultsMaxValue(poll) * 100 + '%'"></span>
                 </div>
               </ion-col>
-              <ion-col>{{result.value}}</ion-col>
+              <ion-col><strong>{{result.value}}</strong></ion-col>
             </ion-row>
 
             <ion-row>
