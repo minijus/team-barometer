@@ -75,8 +75,6 @@ export class PollsPage {
 
       poll.commentsCount = this.getCommentsCount(poll);
 
-      console.log(poll.commentsCount);
-
       return poll;
     });
   }

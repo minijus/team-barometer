@@ -3,21 +3,6 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-
-    <ion-segment [(ngModel)]="segment" (ionChange)="updateSchedule()">
-      <ion-segment-button value="all">
-        Active
-      </ion-segment-button>
-      <ion-segment-button value="favorites">
-        Closed
-      </ion-segment-button>
-    </ion-segment>
-
-    <ion-buttons end>
-      <button ion-button icon-only (click)="presentFilter()">
-        <ion-icon ios="ios-options-outline" md="md-options"></ion-icon>
-      </button>
-    </ion-buttons>
   </ion-navbar>
 
   <!--<ion-toolbar no-border-top>-->
@@ -30,59 +15,54 @@
 </ion-header>
 
 <ion-content>
-  <ion-refresher (ionRefresh)="doRefresh($event)">
-    <ion-refresher-content></ion-refresher-content>
-  </ion-refresher>
 
-  <ion-list #scheduleList [hidden]="shownSessions === 0">
-
-    <ion-item-group *ngFor="let group of groups" [hidden]="group.hide">
-
-      <ion-item-divider sticky>
-        <ion-label>
-          {{group.time}}
-        </ion-label>
-      </ion-item-divider>
-
-      <ion-item-sliding *ngFor="let session of group.sessions" #slidingItem [attr.track]="session.tracks[0] | lowercase" [hidden]="session.hide">
-
-        <button ion-item (click)="goToSessionDetail(session)">
-          <h3>{{session.name}}</h3>
-          <p>
-            {{session.timeStart}} &mdash;
-            {{session.timeEnd}}:
-            {{session.location}}
-          </p>
-        </button>
-
-        <ion-item-options>
-          <button ion-button color="favorite" (click)="addFavorite(slidingItem, session)" *ngIf="segment === 'all'">
-            Favorite
-          </button>
-          <button ion-button color="danger" (click)="removeFavorite(slidingItem, session, 'Remove Favorite')" *ngIf="segment === 'favorites'">
-            Remove
-          </button>
-        </ion-item-options>
-
-      </ion-item-sliding>
-
-    </ion-item-group>
+  <ion-list no-lines>
+    <h2 padding-left>Poll Question</h2>
+    <ion-item>
+      <ion-input [(ngModel)]="pollTitle" type="text" placeholder="i.e. How was my presentation?"></ion-input>
+    </ion-item>
 
   </ion-list>
 
-  <ion-list-header [hidden]="shownSessions > 0">
-      No Sessions Found
-  </ion-list-header>
+  <ion-list radio-group no-lines [(ngModel)]="theme">
+    <h2 padding-left>Theme</h2>
+    <ion-item>
+      <ion-thumbnail item-start>
+        <img src="../../assets/img/votes/default/wow.png">
+      </ion-thumbnail>
+      <ion-label>Default</ion-label>
+      <ion-radio checked="true" value="default"></ion-radio>
+    </ion-item>
 
-  <!--<ion-fab bottom right #fab>-->
-    <!--<button ion-fab><ion-icon name="share"></ion-icon></button>-->
-    <!--<ion-fab-list side="top">-->
-      <!--<button ion-fab color="vimeo" (click)="openSocial('Vimeo', fab)"><ion-icon name="logo-vimeo"></ion-icon></button>-->
-      <!--<button ion-fab color="google" (click)="openSocial('Google+', fab)"><ion-icon name="logo-googleplus"></ion-icon></button>-->
-      <!--<button ion-fab color="twitter" (click)="openSocial('Twitter', fab)"><ion-icon name="logo-twitter"></ion-icon></button>-->
-      <!--<button ion-fab color="facebook" (click)="openSocial('Facebook', fab)"><ion-icon name="logo-facebook"></ion-icon></button>-->
-    <!--</ion-fab-list>-->
-  <!--</ion-fab>-->
+    <ion-item>
+      <ion-thumbnail item-start>
+        <img src="../../assets/img/votes/energy/wow.png">
+      </ion-thumbnail>
+      <ion-label>Energy</ion-label>
+      <ion-radio value="energy"></ion-radio>
+    </ion-item>
+
+    <ion-item>
+      <ion-thumbnail item-start>
+        <img src="../../assets/img/votes/weather/wow.png">
+      </ion-thumbnail>
+      <ion-label>Weather</ion-label>
+      <ion-radio value="weather"></ion-radio>
+    </ion-item>
+
+    <ion-item>
+      <ion-thumbnail item-start>
+        <img src="../../assets/img/votes/agile/wow.png">
+      </ion-thumbnail>
+      <ion-label>Agile</ion-label>
+      <ion-radio value="agile"></ion-radio>
+    </ion-item>
+
+  </ion-list>
+
+  <ion-buttons padding end>
+    <button (click)="onAdd()" ion-button>Add</button>
+  </ion-buttons>
 
 
 </ion-content>
