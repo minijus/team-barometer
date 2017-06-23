@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 
-import { NavController } from 'ionic-angular';
+import { NavController, ModalController } from 'ionic-angular';
 
 import { UserData } from '../../providers/user-data';
 import { PollsData } from '../../providers/polls';
 import { LoginPage }  from "../login/login";
+import { SupportPage }  from "../support/support";
 
 @Component({
   selector: 'polls',
@@ -28,7 +29,8 @@ export class PollsPage {
 
   constructor(public nav: NavController,
               public pollsData: PollsData,
-              public user: UserData) {
+              public user: UserData,
+              public modalCtrl: ModalController) {
 
   }
 
@@ -177,6 +179,11 @@ export class PollsPage {
     });
 
     return count;
+  }
+
+  presentModal(poll: any) {
+    let modal = this.modalCtrl.create(SupportPage, {users: poll.users});
+    modal.present();
   }
 
 }
