@@ -71,6 +71,10 @@ export class PollsPage {
 
       poll.averagePercentage = (poll.totalVoteCount / (poll.users.length * 3)) * 100;
 
+      poll.commentsCount = this.getCommentsCount(poll);
+
+      console.log(poll.commentsCount);
+
       return poll;
     });
   }
@@ -164,13 +168,15 @@ export class PollsPage {
   }
 
   getCommentsCount(poll: any) {
-    return poll.users.reduce((a: any, b: any) => {
-      if (!b.comment) {
-        return 0;
-      }
-      return a + 1;
-    }, 0);
+    let count = 0;
 
+    poll.users.forEach((item: any) => {
+      if (item.comment){
+        count++;
+      }
+    });
+
+    return count;
   }
 
 }
