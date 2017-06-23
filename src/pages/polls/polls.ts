@@ -148,26 +148,8 @@ export class PollsPage {
     return max;
   }
 
-  getUserPlace(userVote: any){
-    let percentage = 100 / (userVote + 1);
-
-    if (percentage === 100){
-      return 5;
-    }
-
-    if (percentage >= 50){
-      return 23;
-    }
-
-    if (percentage >= 33){
-      return 78;
-    }
-
-    if (percentage >= 25){
-      return 92;
-    }
-
-    return percentage;
+  getUserPlace(userVote: any) {
+    return userVote * (100/3);
   }
 
   getCommentsCount(poll: any) {

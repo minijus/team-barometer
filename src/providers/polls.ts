@@ -25,10 +25,6 @@ export class PollsData {
   processData(data: any) {
     this.data = data.json();
 
-    this.data = data.json().filter((poll:any) => {
-      return !!poll.options;
-    });
-
     console.log(this.data);
 
     return this.data;
