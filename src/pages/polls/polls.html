@@ -29,7 +29,7 @@
                     </ion-thumbnail>
                   </ion-col>
                 </ion-row>
-                <ion-grid>{{poll.userVoteTitle}}</ion-grid>
+                <p padding-top text-center><strong>{{poll.userVoteTitle}}</strong></p>
               </ion-grid>
 
               <ion-list [hidden]="poll.userVoted || (!poll.userVoted && !(poll.userVote >= 0))">
