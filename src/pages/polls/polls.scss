@@ -85,3 +85,26 @@ page-speaker-list {
 
   //animation: animate-stripes 3s linear infinite;
 }
+
+.vote-average {
+
+}
+.vote-average {
+  position: relative;
+  //position: relative;
+  //width: 60px;
+  //left: -30px;
+  //text-align: center;
+
+  &--average {
+    position: relative;
+    left: -19px;
+    top: -5px;
+  }
+
+  &--me {
+    position: relative;
+    left: -5px;
+    top: 2px;
+  }
+}

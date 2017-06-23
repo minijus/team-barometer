@@ -21,7 +21,7 @@
               </button>
             </ion-card-header>
 
-            <ion-card-content class="outer-content vote" [ngClass]="(poll.userVote >= 0) ? 'vote--set' : 'vote--not-set'">
+            <ion-card-content [hidden]="poll.userVoted" class="outer-content vote" [ngClass]="(poll.userVote >= 0) ? 'vote--set' : 'vote--not-set'">
               <ion-grid>
                 <ion-row>
                   <ion-col col-3 *ngFor="let vote of votes" (click)="setVote(vote, poll)">
@@ -52,11 +52,34 @@
               </button>
             </ion-card-content>
 
+            <ion-row [hidden]="!poll.userVoted">
+              <ion-col>&nbsp;</ion-col>
+              <ion-col col-10>
+
+                <div class="vote-average" [style.left]="(getUserPlace(poll.userVote) - 2) + '%'">
+                  <div class="vote-average--me">Me</div>
+                  <ion-icon ios="md-arrow-dropdown" md="md-arrow-dropdown"></ion-icon>
+                </div>
+
+
+                <div class="progress-bar green stripes">
+                  <span [style.width]="poll.averagePercentage + '%'"></span>
+                </div>
+
+                <div class="vote-average vote-average__average" [style.left]="(poll.averagePercentage - 2) + '%'">
+                  <ion-icon ios="md-arrow-dropup" md="md-arrow-dropup"></ion-icon><br>
+                  <div class="vote-average--average">Average</div>
+                </div>
+
+              </ion-col>
+              <ion-col>&nbsp;</ion-col>
+            </ion-row>
+
             <ion-row [hidden]="!poll.userVoted" *ngFor="let result of getVoteResults(poll)">
               <ion-col>
                 <ion-thumbnail item-start class="vote-icon"
                                [ngClass]="poll.userVote === votes[result.key].val? 'vote-icon--selected' : ''">
-                  <img [src]='"assets/img/votes/" + poll.theme + "/" + votes[result.key].name + ".png"' alt="{{votes[result.key].name}}">
+                    <img [src]='"assets/img/votes/" + poll.theme + "/" + votes[result.key].name + ".png"' alt="{{votes[result.key].name}}">
                 </ion-thumbnail>
               </ion-col>
               <ion-col col-10>
@@ -65,24 +88,6 @@
                 </div>
               </ion-col>
               <ion-col><strong>{{result.value}}</strong></ion-col>
-            </ion-row>
-
-            <ion-row>
-              <ion-col>
-                <div class="progress-bar green stripes">
-                  <span [style.width]="poll.averagePercentage + '%'"></span>
-                </div>
-                <div style="width: 100%; position: relative">
-                  <span style="position: absolute; width: 7%" [style.left]="getUserPlace(poll.userVote) + '%'">
-                    <ion-thumbnail item-start class="vote-icon">
-                      <img [src]='"assets/img/votes/" + poll.theme + "/" + votes[poll.userVote].name + ".png"' alt="{{votes[poll.userVote].name}}">
-                    </ion-thumbnail>
-                    <div style="position: absolute">
-                      <span>My vote</span>
-                    </div>
-                  </span>
-                </div>
-              </ion-col>
             </ion-row>
 
             <ion-row>
