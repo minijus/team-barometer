@@ -43,9 +43,9 @@ export class ConferenceApp {
   // the left menu only works after login
   // the login page disables the left menu
   appPages: PageInterface[] = [
-    { title: 'Polls', name: 'PollsPage', component: PollsPage, icon: 'information-circle' },
+    { title: 'Polls', name: 'PollsPage', component: PollsPage, icon: 'chatboxes' },
     // { title: 'About', name: 'AboutPage', component: AboutPage, icon: 'information-circle' },
-    { title: 'Intro', name: 'Tutorial', component: TutorialPage, icon: 'help' }
+    { title: 'Intro', name: 'Tutorial', component: TutorialPage, icon: 'information-circle' }
   ];
   loggedInPages: PageInterface[] = [
     { title: 'Account', name: 'AccountPage', component: AccountPage, icon: 'person' }

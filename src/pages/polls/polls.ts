@@ -93,6 +93,7 @@ export class PollsPage {
     // console.log(vote, poll);
     if (!poll.userVoted) {
       poll.userVote = vote.value;
+      poll.userVoteTitle = vote.title;
     }
 
   }

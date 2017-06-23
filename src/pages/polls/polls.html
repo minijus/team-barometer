@@ -16,21 +16,20 @@
 
           <ion-card class="speaker-card">
             <ion-card-header>
-              <button ion-item detail-none (click)="goToPollDetail(poll)">
-                {{poll.title}}
-              </button>
+              <h2>{{poll.title}}</h2>
             </ion-card-header>
 
             <ion-card-content [hidden]="poll.userVoted" class="outer-content vote" [ngClass]="(poll.userVote >= 0) ? 'vote--set' : 'vote--not-set'">
               <ion-grid>
                 <ion-row>
-                  <ion-col col-3 *ngFor="let vote of votes" (click)="setVote(vote, poll)">
+                  <ion-col col-3 *ngFor="let vote of poll.options" (click)="setVote(vote, poll)">
                     <ion-thumbnail item-start class="vote-icon"
                                    [ngClass]="poll.userVote === vote.value ? 'vote-icon--selected' : ''">
                       <img [src]='"assets/img/votes/" + poll.theme + "/" + vote.name + ".png"' alt="{{vote.name}}">
                     </ion-thumbnail>
                   </ion-col>
                 </ion-row>
+                <ion-grid>{{poll.userVoteTitle}}</ion-grid>
               </ion-grid>
 
               <ion-list [hidden]="poll.userVoted || (!poll.userVoted && !(poll.userVote >= 0))">
