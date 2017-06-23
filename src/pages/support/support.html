@@ -1,34 +1,27 @@
 <ion-header>
-
-	<ion-navbar>
-		<button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-		<ion-title>Support</ion-title>
-	</ion-navbar>
-
+  <ion-toolbar>
+    <ion-title>
+      <ion-title>Messages</ion-title>
+    </ion-title>
+    <ion-buttons left>
+      <button ion-button (click)="dismiss()">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
 </ion-header>
 
-
 <ion-content>
-	<div class="logo">
-		<img src="assets/img/appicon.svg" alt="Ionic Logo">
-	</div>
 
-	<form #submitForm="ngForm" novalidate (ngSubmit)="submit(submitForm)">
-		<ion-list no-lines>
-			<ion-item>
-				<ion-label stacked color="primary">Enter your support message below</ion-label>
-				<ion-textarea [(ngModel)]="supportMessage" name="supportQuestion" #supportQuestion="ngModel" rows="6" required></ion-textarea>
-			</ion-item>
-		</ion-list>
+  <ion-list no-lines>
+    <ion-item *ngFor="let message of comments">
+        <h2>{{message.comment}}</h2>
+        <p>{{message.name}}</p>
+    </ion-item>
+  </ion-list>
 
-		<p ion-text [hidden]="supportQuestion.valid || submitted === false" color="danger" padding-left>
-			Support message is required
-		</p>
+  <p padding *ngIf="!comments.length">
+    No messages here
+  </p>
 
-		<div padding>
-			<button ion-button block type="submit">Submit</button>
-		</div>
-	</form>
 </ion-content>

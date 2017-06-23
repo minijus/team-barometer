@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 
-import { NavController } from 'ionic-angular';
+import { NavController, ModalController } from 'ionic-angular';
 
 import { UserData } from '../../providers/user-data';
 import { PollsData } from '../../providers/polls';
 import { LoginPage }  from "../login/login";
+import { SupportPage }  from "../support/support";
 
 @Component({
   selector: 'polls',
@@ -28,7 +29,8 @@ export class PollsPage {
 
   constructor(public nav: NavController,
               public pollsData: PollsData,
-              public user: UserData) {
+              public user: UserData,
+              public modalCtrl: ModalController) {
 
   }
 
@@ -70,6 +72,10 @@ export class PollsPage {
       poll.totalVoteCount = total;
 
       poll.averagePercentage = (poll.totalVoteCount / (poll.users.length * 3)) * 100;
+
+      poll.commentsCount = this.getCommentsCount(poll);
+
+      console.log(poll.commentsCount);
 
       return poll;
     });
@@ -164,13 +170,20 @@ export class PollsPage {
   }
 
   getCommentsCount(poll: any) {
-    return poll.users.reduce((a: any, b: any) => {
-      if (!b.comment) {
-        return 0;
-      }
-      return a + 1;
-    }, 0);
+    let count = 0;
 
+    poll.users.forEach((item: any) => {
+      if (item.comment){
+        count++;
+      }
+    });
+
+    return count;
+  }
+
+  presentModal(poll: any) {
+    let modal = this.modalCtrl.create(SupportPage, {users: poll.users});
+    modal.present();
   }
 
 }

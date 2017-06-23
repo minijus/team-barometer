@@ -98,9 +98,10 @@
                 </button>
               </ion-col>
               <ion-col *ngIf="poll.users">
-                <button ion-button icon-left clear small>
+                <button ion-button icon-left clear small
+                  (click)="presentModal(poll)">
                   <ion-icon name="text"></ion-icon>
-                  <div>{{getCommentsCount(poll)}} Messages</div>
+                  <div>{{poll.commentsCount}} Messages</div>
                 </button>
               </ion-col>
             </ion-row>
