@@ -48,4 +48,12 @@ export class PollsData {
       .map(this.processData, this);
   }
 
+  addPoll(polReq: any){
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+
+    return this.http.post("https://pacific-garden-31653.herokuapp.com/group/add", polReq, options)
+      .map(this.processData, this);
+  }
+
 }
