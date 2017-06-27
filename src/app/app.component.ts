@@ -1,24 +1,17 @@
-import { Component, ViewChild } from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 
-import { Events, MenuController, Nav, Platform } from 'ionic-angular';
-import { SplashScreen } from '@ionic-native/splash-screen';
+import {Events, MenuController, Nav, Platform} from 'ionic-angular';
+import {SplashScreen} from '@ionic-native/splash-screen';
 
-import { Storage } from '@ionic/storage';
+import {Storage} from '@ionic/storage';
 
-import { AboutPage } from '../pages/about/about';
-import { PollsPage } from '../pages/polls/polls';
-import { AccountPage } from '../pages/account/account';
-import { LoginPage } from '../pages/login/login';
-import { MapPage } from '../pages/map/map';
-import { SignupPage } from '../pages/signup/signup';
-import { TabsPage } from '../pages/tabs/tabs';
-import { TutorialPage } from '../pages/tutorial/tutorial';
-import { SchedulePage } from '../pages/schedule/schedule';
-import { SpeakerListPage } from '../pages/speaker-list/speaker-list';
-import { SupportPage } from '../pages/support/support';
+import {PollsPage} from '../pages/polls/polls';
+import {AccountPage} from '../pages/account/account';
+import {LoginPage} from '../pages/login/login';
+import {TutorialPage} from '../pages/tutorial/tutorial';
+import {SchedulePage} from '../pages/schedule/schedule';
 
-import { ConferenceData } from '../providers/conference-data';
-import { UserData } from '../providers/user-data';
+import {UserData} from '../providers/user-data';
 
 export interface PageInterface {
   title: string;
@@ -43,27 +36,24 @@ export class ConferenceApp {
   // the left menu only works after login
   // the login page disables the left menu
   appPages: PageInterface[] = [
-    { title: 'Polls', name: 'PollsPage', component: PollsPage, icon: 'information-circle' },
-    { title: 'Add Poll', name: 'Schedule', component: SchedulePage, icon: 'add' },
-    { title: 'Intro', name: 'Tutorial', component: TutorialPage, icon: 'help' }
+    {title: 'Polls', name: 'PollsPage', component: PollsPage, icon: 'information-circle'},
+    {title: 'Add Poll', name: 'Schedule', component: SchedulePage, icon: 'add'},
+    {title: 'Intro', name: 'Tutorial', component: TutorialPage, icon: 'help'}
   ];
   loggedInPages: PageInterface[] = [
-    { title: 'Account', name: 'AccountPage', component: AccountPage, icon: 'person' }
+    {title: 'Account', name: 'AccountPage', component: AccountPage, icon: 'person'}
   ];
   loggedOutPages: PageInterface[] = [
-    { title: 'Login', name: 'LoginPage', component: LoginPage, icon: 'log-in' }
+    {title: 'Login', name: 'LoginPage', component: LoginPage, icon: 'log-in'}
   ];
   rootPage: any;
 
-  constructor(
-    public events: Events,
-    public userData: UserData,
-    public menu: MenuController,
-    public platform: Platform,
-    public confData: ConferenceData,
-    public storage: Storage,
-    public splashScreen: SplashScreen
-  ) {
+  constructor(public events: Events,
+              public userData: UserData,
+              public menu: MenuController,
+              public platform: Platform,
+              public storage: Storage,
+              public splashScreen: SplashScreen) {
 
     // Check if the user has already seen the tutorial
     this.storage.get('hasSeenTutorial')
@@ -75,9 +65,6 @@ export class ConferenceApp {
         }
         this.platformReady()
       });
-
-    // load the conference data
-    confData.load();
 
     // decide which menu items should be hidden by current login status stored in local storage
     this.userData.hasLoggedIn().then((hasLoggedIn) => {
@@ -95,7 +82,7 @@ export class ConferenceApp {
     // setRoot on the nav to remove previous pages and only have this page
     // we wouldn't want the back button to show in this scenario
     if (page.index) {
-      params = { tabIndex: page.index };
+      params = {tabIndex: page.index};
     }
 
     // If we are already on tabs just change the selected tab
@@ -103,8 +90,8 @@ export class ConferenceApp {
     // tabs even if changing them from the menu
     if (this.nav.getActiveChildNav() && page.index != undefined) {
       this.nav.getActiveChildNav().select(page.index);
-    // Set the root of the nav with params if it's a tab index
-  } else {
+      // Set the root of the nav with params if it's a tab index
+    } else {
       this.nav.setRoot(page.name, params).catch((err: any) => {
         console.log(`Didn't set nav root: ${err}`);
       });

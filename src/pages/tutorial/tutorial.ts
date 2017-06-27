@@ -1,10 +1,9 @@
-import { Component, ViewChild } from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 
-import { MenuController, NavController, Slides } from 'ionic-angular';
+import {MenuController, NavController, Slides} from 'ionic-angular';
 
-import { Storage } from '@ionic/storage';
+import {Storage} from '@ionic/storage';
 
-import { TabsPage } from '../tabs/tabs';
 import {LoginPage} from "../login/login";
 
 @Component({
@@ -15,13 +14,12 @@ import {LoginPage} from "../login/login";
 export class TutorialPage {
   showSkip = true;
 
-	@ViewChild('slides') slides: Slides;
+  @ViewChild('slides') slides: Slides;
 
-  constructor(
-    public navCtrl: NavController,
-    public menu: MenuController,
-    public storage: Storage
-  ) { }
+  constructor(public navCtrl: NavController,
+              public menu: MenuController,
+              public storage: Storage) {
+  }
 
   startApp() {
     this.navCtrl.setRoot(LoginPage).then(() => {
@@ -33,9 +31,9 @@ export class TutorialPage {
     this.showSkip = !slider.isEnd();
   }
 
-	ionViewWillEnter() {
-		this.slides.update();
-	}
+  ionViewWillEnter() {
+    this.slides.update();
+  }
 
   ionViewDidEnter() {
     // the root left menu should be disabled on the tutorial page
