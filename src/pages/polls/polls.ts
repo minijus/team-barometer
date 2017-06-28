@@ -5,7 +5,6 @@ import { NavController, ModalController } from 'ionic-angular';
 import { UserData } from '../../providers/user-data';
 import { PollsData } from '../../providers/polls';
 import { LoginPage }  from "../login/login";
-import { SupportPage }  from "../support/support";
 
 @Component({
   selector: 'polls',
@@ -79,21 +78,11 @@ export class PollsPage {
     });
   }
 
-  goToPollDetail(poll: any) {
-    console.log(poll);
-    // this.navCtrl.push(PollDetailPage, {
-    //   name: poll.title,
-    //   poll: poll
-    // });
-  }
-
   setVote(vote: any, poll: any) {
-    // console.log(vote, poll);
     if (!poll.userVoted) {
       poll.userVote = vote.value;
       poll.userVoteTitle = vote.title;
     }
-
   }
 
   vote(poll: any) {
@@ -160,11 +149,6 @@ export class PollsPage {
     });
 
     return count;
-  }
-
-  presentModal(poll: any) {
-    let modal = this.modalCtrl.create(SupportPage, {users: poll.users});
-    modal.present();
   }
 
 }

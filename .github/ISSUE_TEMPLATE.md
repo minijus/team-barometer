@@ -7,7 +7,7 @@ If you are having problems formatting your issue please refer to this article on
 **I'm submitting a ...**  (check one with "x")
 [ ] bug report
 [ ] feature request
-[ ] support request => Please do not submit support requests here, use one of these channels: https://forum.ionicframework.com/ or http://ionicworldwide.herokuapp.com/
+[ ] support request => Please do not submit support requests here, contact authors directly
 
 **Current behavior:**
 <!-- Describe how the bug manifests. -->
@@ -29,10 +29,3 @@ insert any relevant code here
 
 **Other information:**
 <!-- List any other information that is relevant to your issue. Stack traces, related issues, suggestions on how to fix, Stack Overflow links, forum links, etc. -->
-
-**Ionic info:** (run `ionic info` from a terminal/cmd prompt and paste output below):
-
-```
-insert the output from ionic info here
-```
-

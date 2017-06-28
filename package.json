@@ -1,11 +1,11 @@
 {
-    "name": "baro",
+    "name": "moody",
     "version": "0.0.1",
-    "description": "An Ionic project",
+    "description": "Moody - Team Barometer",
     "license": "Apache-2.0",
     "repository": {
         "type": "git",
-        "url": "https://github.com/ionic-team/ionic-conference-app.git"
+        "url": "https://github.com/minijus/team-barometer.git"
     },
     "scripts": {
         "build": "ionic-app-scripts build",
